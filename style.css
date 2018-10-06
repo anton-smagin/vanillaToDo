@@ -48,10 +48,13 @@ input, li, .btn {
 }
 
 li {
-  display: flex;
   align-items: center;
   list-style-type: none;
   background-color: #f9f9f9;
+}
+
+.list-group-item {
+  display: flex;
 }
 
 .todo-text {
