@@ -15,7 +15,19 @@
     </div>
     <div class="row" >
       <div id="app">
-        <todo-app></todo-app>
+        <div class="col5">
+          <div class="input-group">
+            <input id="new-todo" type="text" placeholder="what your plan?" v-model="newTodo">
+            <button id="add-todo" class="btn" v-on:click="addToDo">Add ToDo</button>
+          </div>
+        </div>
+        <div class="col5">
+          <ul  class="list-group" id="todos">
+            <li v-for="todo in todos">
+              <todo-item v-bind:todo="todo" v-on:delete-todo="deleteToDo($event)"></todo-item>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

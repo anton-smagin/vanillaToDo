@@ -1,39 +1,3 @@
-Vue.component('todo-app', {
-  data () {
-    return {
-      todos: [],
-      newTodo: ''
-    }
-  },
-  methods: {
-    deleteToDo (id) {
-      this.todos.splice(id, 1);
-    },
-    addToDo () {
-      this.todos.push({id: this.todos.length, text: this.newTodo})
-      this.newTodo = ''
-    }
-  },
-  template:
-  `
-  <div>
-    <div class="col5">
-      <div class="input-group">
-        <input id="new-todo" type="text" placeholder="what your plan?" v-model="newTodo">
-        <button id="add-todo" class="btn" v-on:click="addToDo">Add ToDo</button>
-      </div>
-    </div>
-    <div class="col5">
-      <ul  class="list-group" id="todos">
-        <li v-for="todo in todos">
-          <todo-item v-bind:todo="todo" v-on:delete-todo="deleteToDo($event)"></todo-item>
-        </li>
-      </ul>
-    </div>
-  </div>
-  `
-})
-
 Vue.component('todo-item', {
   props: ['todo'],
   data () {
@@ -55,7 +19,7 @@ Vue.component('todo-item', {
   template:`
     <div>
       <div v-if="editing" class="edit-todo list-group-item">
-        <div class="input-group mb-3">
+        <div class="input-group">
           <input type="text" v-model="todo.text">
           <button id="save-todo" class="btn btn-success" v-on:click="saveToDo()">save ToDo</button>
         </div>
@@ -74,5 +38,20 @@ Vue.component('todo-item', {
 })
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+    data () {
+    return {
+      todos: [],
+      newTodo: ''
+    }
+  },
+  methods: {
+    deleteToDo (id) {
+      this.todos.splice(id, 1);
+    },
+    addToDo () {
+      this.todos.push({id: this.todos.length, text: this.newTodo})
+      this.newTodo = ''
+    }
+  },
 })
