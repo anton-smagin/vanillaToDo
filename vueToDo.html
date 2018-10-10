@@ -23,8 +23,8 @@
         </div>
         <div class="col5">
           <ul  class="list-group" id="todos">
-            <li v-for="todo in todos">
-              <todo-item v-bind:todo="todo" v-on:delete-todo="deleteToDo($event)"></todo-item>
+            <li v-for="(todo, index) in todos">
+              <todo-item v-bind:todo="todo" todoindex="index" v-on:delete-todo="deleteToDo($event)"></todo-item>
             </li>
           </ul>
         </div>

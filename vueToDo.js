@@ -1,8 +1,9 @@
 Vue.component('todo-item', {
-  props: ['todo'],
+  props: ['todo', 'todoindex'],
   data () {
     return {
-      editing: false
+      editing: false,
+      text: this.todo
     }
   },
   methods: {
@@ -13,20 +14,20 @@ Vue.component('todo-item', {
       this.editing = true
     },
     deleteToDo () {
-      this.$emit('delete-todo', this.todo.id)
+      this.$emit('delete-todo', this.todoindex)
     }
   },
   template:`
     <div>
       <div v-if="editing" class="edit-todo list-group-item">
         <div class="input-group">
-          <input type="text" v-model="todo.text">
+          <input type="text" v-model="text">
           <button id="save-todo" class="btn btn-success" v-on:click="saveToDo()">save ToDo</button>
         </div>
       </div>
       <div class="list-group-item" v-else>
         <span class="todo-text">
-          {{todo.text}}
+          {{text}}
         </span>
         <div class="btn-group btn-group-sm float-right" role="group">
           <button class="btn btn-warning todo-edit" v-on:click="editToDo()">edit</button>
@@ -50,7 +51,7 @@ var app = new Vue({
       this.todos.splice(id, 1);
     },
     addToDo () {
-      this.todos.push({id: this.todos.length, text: this.newTodo})
+      this.todos.push(this.newTodo)
       this.newTodo = ''
     }
   },
